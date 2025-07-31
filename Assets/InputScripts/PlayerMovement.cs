@@ -14,8 +14,7 @@ namespace TopDown.Movement
         }
         private void OnJump()
         {
-            Debug.Log("JUMP " + jumpVelocity);
-            velocityDirection.y = jumpVelocity;
+            jumpButtonPressedTime = Time.time;
         }
     }
 }

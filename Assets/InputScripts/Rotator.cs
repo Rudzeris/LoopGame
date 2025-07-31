@@ -1,5 +1,6 @@
-﻿using Unity.Mathematics;
+﻿using UnityEngine.Events;
 using UnityEngine;
+using System;
 
 namespace TopDown.Movement
 {
@@ -7,7 +8,7 @@ namespace TopDown.Movement
     {
         protected void LookAt(Vector3 target)
         {
-            float lookAngle = AngleBetweenTwoPoints(transform.position, target) + 90;
+            float lookAngle = AngleBetweenTwoPoints(transform.position, target);
 
             transform.eulerAngles = new Vector3(0, lookAngle, 0);
         }

@@ -13,9 +13,12 @@ namespace TopDown.Movement
         [Header("Õàðêè ïðûæêà")]
         [SerializeField] private float maxJumpTime;
         [SerializeField] private float maxJumpHeight;
+        [SerializeField] protected float JumpButtonGracePeriod;
         private float gravityForce = 9.8f;
         protected float jumpVelocity;
         protected Vector3 velocityDirection;
+        protected float? lastGroundedTime;
+        protected float? jumpButtonPressedTime;
 
         private void Start()
         {
@@ -28,18 +31,38 @@ namespace TopDown.Movement
 
         private void Update()
         {
-            velocityDirection.x = currentInput.x * movementSpeed;
-            velocityDirection.z = currentInput.z * movementSpeed;
-            characterController.Move(velocityDirection * Time.deltaTime);
+            UpdateLastGroundedTime();
+            BufferingJump();
+            HorizontalMovement();
             GravityHandling();
         }
 
-        private void CheckPlayerHeight()
+        private void UpdateLastGroundedTime()
         {
-            if (transform.position.y <= -5)
+            if (characterController.isGrounded)
             {
-                Debug.Log("ÓÌÝÐ");
+                lastGroundedTime = Time.time;
             }
+        }
+
+        private void BufferingJump()
+        {
+            if (Time.time - lastGroundedTime <= JumpButtonGracePeriod)
+            {
+                if (Time.time - jumpButtonPressedTime <= JumpButtonGracePeriod)
+                {
+                    velocityDirection.y = jumpVelocity;
+                    jumpButtonPressedTime = null;
+                    lastGroundedTime = null;
+                }
+            }
+        }
+
+        private void HorizontalMovement()
+        {
+            velocityDirection.x = currentInput.x * movementSpeed;
+            velocityDirection.z = currentInput.z * movementSpeed;
+            characterController.Move(velocityDirection * Time.deltaTime);
         }
 
         private void GravityHandling()
