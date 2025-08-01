@@ -19,7 +19,8 @@ public class FollowingCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraMove();
+        if (playerCharacter != null)
+            CameraMove();
     }
 
     private void CameraMove()

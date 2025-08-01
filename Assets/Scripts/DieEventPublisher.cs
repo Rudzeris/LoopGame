@@ -1,26 +1,24 @@
-using TopDown.Movement;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DieEventPublisher : MonoBehaviour
 {
-    public UnityEvent DieEvent;
-
-
-    private void Start()
-    {
-
-    }
-
+    public float criticalHeight = -5;
     private void Update()
     {
         CheckPlayerHeight();
     }
     private void CheckPlayerHeight()
     {
-        if (transform.position.y <= -5)
+        if (transform.position.y <= criticalHeight)
         {
-            DieEvent.Invoke();
+            try
+            {
+                Messenger.Broadcast(GameEvent.PLAYER_STAY_CRITICAL_ZONE);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
     }
 }
