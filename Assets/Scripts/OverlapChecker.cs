@@ -27,7 +27,7 @@ namespace TopDown.Generator
 
                 if (hitCollider != objectCollider)
                 {
-                    Debug.Log("Detected on layer: " + hitCollider.gameObject.name);
+                    Debug.Log("Detected Overlap");
                     Destroy(transform.parent.gameObject);
                 }
             }

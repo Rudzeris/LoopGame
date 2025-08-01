@@ -6,28 +6,36 @@ namespace TopDown.Generator
 {
     public class ZoneSpawner : MonoBehaviour
     {
-        [SerializeField] private float zoneOffset = 29;
         [SerializeField] private float zoneCount = 3;
         private List<GameObject> zones = new List<GameObject>();
 
         [SerializeField] private GameObject zonePrefab;
+
+        public List<GameObject> Zones { get => zones; set => zones = value; }
+
         void Start()
         {
             for (int i = 0; i < zoneCount; i++)
             {
-                var zone = Instantiate(zonePrefab, new Vector3(100, 0, zoneOffset * i), Quaternion.identity);
-                zones.Add(zone);
+                var zone = Instantiate(zonePrefab, new Vector3(100, 0, Helper.zoneOffset * i), Quaternion.identity);
+                zone.GetComponent<Zone>().index = i;
+                Zones.Add(zone);
             }
 
-           StartCoroutine(prepareZones()); 
+            for (int i = 2; i < zones.Count; i++)
+            {
+                zones[i].SetActive(false);
+            }
+
+            StartCoroutine(prepareZones()); 
         }
 
         private IEnumerator prepareZones()
         {
             yield return new WaitForSeconds(1);
-            foreach(var zone in zones)
+            foreach (var zone in Zones)
             {
-                zone.transform.position -= new Vector3(100,0,0);
+                zone.transform.position -= new Vector3(100, 0, 0);
             }
         }
     }
