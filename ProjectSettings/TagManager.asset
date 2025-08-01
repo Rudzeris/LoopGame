@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Zone
   - Generator
+  - Obstacle
+  - Spawn
   layers:
   - Default
   - TransparentFX

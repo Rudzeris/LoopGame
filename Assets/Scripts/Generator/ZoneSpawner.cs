@@ -22,21 +22,25 @@ namespace TopDown.Generator
                 Zones.Add(zone);
             }
 
-            for (int i = 2; i < zones.Count; i++)
-            {
-                zones[i].SetActive(false);
-            }
-
             StartCoroutine(prepareZones()); 
         }
 
         private IEnumerator prepareZones()
         {
             yield return new WaitForSeconds(1);
+
+            for (int i = 2; i < zones.Count; i++)
+            {
+                zones[i].SetActive(false);
+            }
+
             foreach (var zone in Zones)
             {
                 zone.transform.position -= new Vector3(100, 0, 0);
+                zone.GetComponent<Zone>().InitializeObstacle();
             }
+
+
         }
     }
 }

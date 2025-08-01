@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TopDown.Movement
@@ -16,10 +17,21 @@ namespace TopDown.Movement
         [SerializeField] private float maxJumpHeight;
         [SerializeField] protected float JumpButtonGracePeriod;
         private float gravityForce = 9.8f;
+        private float tempGravityForce;
         protected float jumpVelocity;
-        protected Vector3 velocityDirection;
+        public Vector3 velocityDirection;
         protected float? lastGroundedTime;
         protected float? jumpButtonPressedTime;
+
+        private void OnEnable()
+        {
+            Messenger.AddListener(GameEvent.PLAYER_STAY_CRITICAL_ZONE, OnPlayerStayCriticalZone);
+        }
+
+        private void OnPlayerStayCriticalZone()
+        {
+            characterController.enabled = false;
+        }
 
         private void Start()
         {
@@ -64,6 +76,7 @@ namespace TopDown.Movement
         {
             velocityDirection.x = currentInput.x * movementSpeed;
             velocityDirection.z = currentInput.z * movementSpeed * 1.5f;
+            if(characterController.enabled)
             characterController.Move(velocityDirection * Time.deltaTime);
         }
 
@@ -71,11 +84,6 @@ namespace TopDown.Movement
         {
             if (!characterController.isGrounded)
             {
-                if(transform.position.y < -10)
-                {
-                    velocityDirection.y = -0.5f;
-                    transform.position = spawnPosition;  
-                }
                 velocityDirection.y -= gravityForce * Time.deltaTime;
             }
             else

@@ -35,7 +35,7 @@ namespace Assets.Scripts.Managers
         private IEnumerator Destroyer(GameObject obj)
         {
             yield return new WaitForSeconds(destroyDelay);
-            Destroy(obj);
+            obj.SetActive(false);
             yield return null;
             destroyQueue.Remove(obj);
         }
