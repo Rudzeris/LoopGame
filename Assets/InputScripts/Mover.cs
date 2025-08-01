@@ -9,6 +9,7 @@ namespace TopDown.Movement
         [SerializeField] private float movementSpeed;
         protected CharacterController characterController;
         protected Vector3 currentInput;
+        private Vector3 spawnPosition;
 
         [Header("Харки прыжка")]
         [SerializeField] private float maxJumpTime;
@@ -23,6 +24,7 @@ namespace TopDown.Movement
         private void Start()
         {
             characterController = GetComponent<CharacterController>();
+            spawnPosition = transform.position;
 
             float maxHeightTime = maxJumpTime / 2;
             gravityForce = ((2 * maxJumpHeight) / Mathf.Pow(maxHeightTime, 2));
@@ -61,7 +63,7 @@ namespace TopDown.Movement
         private void HorizontalMovement()
         {
             velocityDirection.x = currentInput.x * movementSpeed;
-            velocityDirection.z = currentInput.z * movementSpeed;
+            velocityDirection.z = currentInput.z * movementSpeed * 1.5f;
             characterController.Move(velocityDirection * Time.deltaTime);
         }
 
@@ -69,6 +71,11 @@ namespace TopDown.Movement
         {
             if (!characterController.isGrounded)
             {
+                if(transform.position.y < -10)
+                {
+                    velocityDirection.y = -0.5f;
+                    transform.position = spawnPosition;  
+                }
                 velocityDirection.y -= gravityForce * Time.deltaTime;
             }
             else

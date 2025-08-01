@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3143767603457435063}
   - component: {fileID: 858456892537540182}
   - component: {fileID: 8835002876174202167}
-  m_Layer: 0
+  - component: {fileID: -6060122030794429864}
+  m_Layer: 7
   m_Name: PlatformsZoneBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,3 +108,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6060122030794429864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4937430647872507407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db7bc2126a960343b20550e789dc4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnThreshold: 100
+  modulesList:
+  - {fileID: 5508784810505055241, guid: 18ef3deedade960498688a76d2c9e547, type: 3}
+  - {fileID: 5508784810505055241, guid: ed05adf42a902224e85fa41d1554c755, type: 3}
+  - {fileID: 5508784810505055241, guid: a362493da2e05bd4ea5bf8331141965b, type: 3}
+  - {fileID: 5508784810505055241, guid: cbdbf2c103cd3904082ae6c6af2fc266, type: 3}
+  fillModulesList:
+  - {fileID: 5508784810505055241, guid: a42146c927944a8468959b1bfeef5a88, type: 3}

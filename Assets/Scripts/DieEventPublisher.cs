@@ -1,9 +1,16 @@
+using TopDown.Movement;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class DieEventPublisher : MonoBehaviour
 {
     public UnityEvent DieEvent;
+
+
+    private void Start()
+    {
+
+    }
 
     private void Update()
     {
