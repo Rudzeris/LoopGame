@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneOffset: 29
   zoneCount: 3
-  zonePrefab: {fileID: 0}
+  zonePrefab: {fileID: 4923837465024179312, guid: 6d7e92e1203955e49a1e2ed4ffe9b056, type: 3}
 --- !u!1 &1778186555
 GameObject:
   m_ObjectHideFlags: 0
