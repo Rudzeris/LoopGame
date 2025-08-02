@@ -29,18 +29,28 @@ namespace TopDown.Generator
         {
             yield return new WaitForSeconds(1);
 
-            for (int i = 2; i < zones.Count; i++)
+            foreach (var zone in Zones) 
             {
-                zones[i].SetActive(false);
-            }
-
-            foreach (var zone in Zones)
-            {
-                zone.transform.position -= new Vector3(100, 0, 0);
                 zone.GetComponent<Zone>().InitializeObstacle();
+
+                zone.GetComponent<Zone>().SetZoneActive(false);
+
+                zone.transform.position -= new Vector3(100, 0, 0);
+
             }
 
+            StartCoroutine(ActivateFirstZones());
+            
+        }
 
+        private IEnumerator ActivateFirstZones()
+        {
+            yield return new WaitForSeconds(0.6f);
+
+            for (int i = 0; i < 2; i++)
+            {
+                zones[i].GetComponent<Zone>().SetZoneActive(true);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimeTween;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

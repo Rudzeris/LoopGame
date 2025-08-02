@@ -32,5 +32,15 @@ namespace TopDown.Generator
                 }
             }
         }
+
+        public void Update()
+        {
+            
+        }
+
+        private void SoftOverlapCheck()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace TopDown.Generator
 
         public void LVLup()
         {
-            if (LVL < Helper.maxLEVEL)
+            if (LVL <= Helper.maxLEVEL)
             LVL++;
             else
             ReachedMaxLevel();
@@ -17,7 +17,6 @@ namespace TopDown.Generator
 
         private void ReachedMaxLevel()
         {
-
             try
             {
                 Messenger.Broadcast(GameEvent.MAX_LEVEL_REACHED);

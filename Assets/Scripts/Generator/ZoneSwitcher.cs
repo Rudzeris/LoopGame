@@ -37,37 +37,42 @@ namespace TopDown.Generator
             else if (zoneIndex - 1 < 0)
             {
                 LevelUpZones();
+
+                zones[0].GetComponent<Zone>().ActivateActiveObstacles();
                 zones[zones.Count - 1].GetComponent<Zone>().SetZoneActive(false);
             }
 
             if (zoneIndex + 1 < zones.Count)
             {
-                SetZoneActive(zoneIndex + 1);
+                SetZoneActive(zoneIndex + 1, Helper.zoneOffset);
             }
             else
             {
-                SetZoneActive(0);      
+                float firstZonePlatform = 2;
+                SetZoneActive(0, Helper.zoneOffset + firstZonePlatform);      
             }
 
             
         }
 
-        private void SetZoneActive(int index)
+        private void SetZoneActive(int index, float Offset)
         {
-            zones[index].transform.position = zones[CurrentZoneIndex].transform.position + new Vector3(0, 0, Helper.zoneOffset);
-            zones[index].GetComponent<Zone>().SetZoneActive(true); ;
+            zones[index].transform.position = zones[CurrentZoneIndex].transform.position + new Vector3(0, 0, Offset);
+            zones[index].GetComponent<Zone>().SetZoneActive(true); 
         }
 
         private void LevelUpZones()
         {
             Debug.Log("LevelUP");
 
-            zoneManager.LVLup();
-
-            foreach(var zone in zones)
+            foreach (var zone in zones)
             {
                 zone.GetComponent<Zone>().LvlUp();
             }
+
+            zoneManager.LVLup();
+
+
         }
 
         public GameObject GetCurrentZone()

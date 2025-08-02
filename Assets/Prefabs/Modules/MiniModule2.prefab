@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3562810043365275613}
   m_Layer: 0
-  m_Name: MiniModule5
+  m_Name: MiniModule2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3562810043365275613}
     m_Modifications:
+    - target: {fileID: 3697265515814766788, guid: 6569fb829dc49a6468f8b1cb1d34d65b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697265515814766788, guid: 6569fb829dc49a6468f8b1cb1d34d65b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3697265515814766788, guid: 6569fb829dc49a6468f8b1cb1d34d65b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -105,7 +113,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1743428656567618840, guid: 993cca345c240bc4e8ed1dc78ba27d9c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.420684
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1743428656567618840, guid: 993cca345c240bc4e8ed1dc78ba27d9c, type: 3}
       propertyPath: m_LocalScale.y
@@ -113,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1743428656567618840, guid: 993cca345c240bc4e8ed1dc78ba27d9c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.392959
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1743428656567618840, guid: 993cca345c240bc4e8ed1dc78ba27d9c, type: 3}
       propertyPath: m_LocalPosition.x

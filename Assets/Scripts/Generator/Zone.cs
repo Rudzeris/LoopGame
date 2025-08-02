@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -23,17 +24,19 @@ namespace TopDown.Generator
         public void InitializeObstacle()
         {
             children = GetComponentsInChildren<Transform>().ToList<Transform>();
-            Debug.Log("Инициализация зоны " + index);
 
-            foreach (Transform child in children)
+
+            var allObj = children.ToList<Transform>();
+
+            foreach (Transform child in allObj)
             {
                 if (child.CompareTag("Obstacle"))
                 {
                     obstacles.Add(child.gameObject);
                     child.gameObject.SetActive(false);
+                    children.Remove(child);
                 }
             }
-            Debug.Log("Количество припятсвий зоны " + index + " = " + obstacles.Count);
 
             var temp = Helper.ShuffleList(obstacles);
 
@@ -44,27 +47,37 @@ namespace TopDown.Generator
 
         public void LvlUp()
         {
+            if(zoneManager.LVL <= Helper.maxLEVEL)
+            {
                 foreach (var obs in ByLevelObstacles[zoneManager.LVL - 1])
                 {
                     activeObstacles.Add(obs);
                 }
+            }
         }
 
         public void SetZoneActive(bool bActive)
         {
             foreach (var child in children)
             {
-                child.gameObject.SetActive(bActive);
-            }
-
-            foreach (var child in obstacles)
-            {
-                child.SetActive(false);
+                var animator = child.gameObject.GetComponent<PlatformAnimator>();
+                if (animator != null)
+                animator.PlayAnimation(bActive);
             }
 
             foreach (var child in activeObstacles)
             {
-                child.SetActive(bActive);
+                var animator = child.gameObject.GetComponent<PlatformAnimator>();
+                if (animator != null)
+                animator.PlayAnimation(bActive, true);
+            }
+        }
+
+        public void ActivateActiveObstacles()
+        {
+            foreach (var child in activeObstacles)
+            {
+                child.SetActive(true);
             }
         }
 
